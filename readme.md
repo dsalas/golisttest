@@ -56,3 +56,6 @@ L2 long: 1 value 1
 L1 long: 1 value 2
 3 2 
 ```
+
+# Referencias
+https://blog.francium.tech/go-modules-go-project-set-up-without-gopath-1ae601a4e868XS

@@ -2,29 +2,32 @@ package mlist
 
 import "fmt"
 
-type NodoLista struct {
-  sig *NodoLista
-  ant *NodoLista
+// Unexported struct
+type mNodoLista struct {
+  sig *mNodoLista
+  ant *mNodoLista
   valor  interface{}
 }
 
-func fNodoLista(elem interface{}) *NodoLista {
-  nl := new(NodoLista)
+// Unexported method
+func fNodoLista(elem interface{}) *mNodoLista {
+  nl := new(mNodoLista)
   nl.sig = nil
   nl.ant = nil
   nl.valor = elem
   return nl
 }
 
-type Lista struct {
-  izquierdo *NodoLista
-  derecho *NodoLista
+// Unexported struct
+type mLista struct {
+  izquierdo *mNodoLista
+  derecho *mNodoLista
   longitud int
 }
 
 // Constructra []
-func ListaVacia() *Lista {
-  l := new(Lista)
+func ListaVacia() *mLista {
+  l := new(mLista)
   l.derecho = nil
   l.izquierdo = nil
   l.longitud = 0
@@ -32,24 +35,22 @@ func ListaVacia() *Lista {
 }
 
 // Operacion observadora es-lista-vacia?
-func (l *Lista) EsListaVacia() bool {
+func (l *mLista) EsListaVacia() bool {
     return l.izquierdo == nil
 }
 
 // Operacion observadora longitud
-func (l *Lista) Longitud() int {
+func (l *mLista) Longitud() int {
     return l.longitud
 }
 
-
 // Operacion observadora derecho
-func (l *Lista) Derecho() interface{} {
+func (l *mLista) Derecho() interface{} {
     return l.derecho.valor
 }
 
-
 // Constructra _:_
-func (l *Lista) AnhadeIzquierda(elem interface{})  {
+func (l *mLista) AnhadeIzquierda(elem interface{})  {
   nl := fNodoLista(elem)
   if (l.EsListaVacia()) {
     l.derecho = nl
@@ -62,27 +63,13 @@ func (l *Lista) AnhadeIzquierda(elem interface{})  {
 }
 
 // Operacion lista unitaria [e]
-func ListaUnitaria(elem interface{}) *Lista {
+func ListaUnitaria(elem interface{}) *mLista {
     l := ListaVacia()
     l.AnhadeIzquierda(elem)
     return l
 }
 
-// Anhade derecha
-
-// Operacion izquierdo
-
-// Operacion derecho
-
-// Operacion elimina izquierdo
-
-// Operacion elimina derecho
-
-// Operacion concatenar
-
-// Operacion recorrer
-
-func (l *Lista) Traverse() {
+func (l *mLista) Traverse() {
   rec := l.izquierdo
   for ( rec != nil) {
     fmt.Printf("%v ", rec.valor)
